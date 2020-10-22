@@ -146,7 +146,7 @@ public class ShumeiAntiFraudImageOperations extends ShumeiAntiFraudOperations {
 	 * @param userIds
 	 * @return
 	 */
-	public AccountStateActionResponse accountState(String[] userIds) {
+	public AntiFraudDetail accountState(String[] userIds) {
 		return this.accountState(userIds, false);
 	}
 	
@@ -157,14 +157,14 @@ public class ShumeiAntiFraudImageOperations extends ShumeiAntiFraudOperations {
 	 * @param needDetail
 	 * @return
 	 */
-	public AccountStateActionResponse accountState(String[] userIds, boolean needDetail) {
+	public AntiFraudDetail accountState(String[] userIds, boolean needDetail) {
 		ImmutableMap.Builder<String, Object> builder = new ImmutableMap.Builder<String, Object>()
 			.put("To_Account", Stream.of(userIds).map(uid -> this.getImUserByUserId(uid)).collect(Collectors.toList()));
 		if(needDetail) {
 			builder.put("IsNeedDetail", 1);
 		}
-		AccountStateActionResponse res = request(TimApiAddress.ACCOUNT_STATE.getValue() + joiner.join(getDefaultParams()),
-				builder.build(), AccountStateActionResponse.class);
+		AntiFraudDetail res = request(TimApiAddress.ACCOUNT_STATE.getValue() + joiner.join(getDefaultParams()),
+				builder.build(), AntiFraudDetail.class);
 		System.out.println(res);
 		if (!res.isSuccess()) {
 			log.error("查询帐号在线状态失败, response message is: {}", res);
