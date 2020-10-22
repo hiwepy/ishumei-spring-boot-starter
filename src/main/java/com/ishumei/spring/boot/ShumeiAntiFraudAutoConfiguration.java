@@ -14,16 +14,16 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @AutoConfigureAfter(WebMvcAutoConfiguration.class)
-@EnableConfigurationProperties(PoiProperties.class)
-public class PoiAutoConfiguration {
+@EnableConfigurationProperties(ShumeiAntiFraudProperties.class)
+public class ShumeiAntiFraudAutoConfiguration {
 	
-	private static final Logger logger = LoggerFactory.getLogger(PoiAutoConfiguration.class);
+	private static final Logger logger = LoggerFactory.getLogger(ShumeiAntiFraudAutoConfiguration.class);
 
 	private final ApplicationContext applicationContext;
 
-	private final PoiProperties properties;
+	private final ShumeiAntiFraudProperties properties;
 
-	public PoiAutoConfiguration(ApplicationContext applicationContext, PoiProperties properties) {
+	public ShumeiAntiFraudAutoConfiguration(ApplicationContext applicationContext, ShumeiAntiFraudProperties properties) {
 		this.applicationContext = applicationContext;
 		this.properties = properties;
 	}
@@ -53,7 +53,7 @@ public class PoiAutoConfiguration {
 	protected static class BeetlConfiguration {
 
 		@Autowired
-		protected PoiProperties properties;
+		protected ShumeiAntiFraudProperties properties;
 
 		protected void applyProperties(BeetlConfiguration factory) {
 			/*factory.setTemplateLoaderPaths(this.properties.getTemplateLoaderPath());
