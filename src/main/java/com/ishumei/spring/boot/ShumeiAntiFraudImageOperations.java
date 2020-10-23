@@ -94,7 +94,7 @@ public class ShumeiAntiFraudImageOperations extends ShumeiAntiFraudOperations {
         
 		AntiFraudImageResponse res = request(getTemplate().getProperties().getAntiFraudImgUrl(), payload, AntiFraudImageResponse.class);
 		if (!res.isSuccess()) {
-			log.error("导入单个帐号失败, response message is: {}", res);
+			log.error("图片识别失败： {}", res);
 		}
 		return res;
 	}

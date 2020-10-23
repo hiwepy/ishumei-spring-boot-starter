@@ -1,5 +1,6 @@
 package com.ishumei.spring.boot.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -9,6 +10,7 @@ import lombok.Data;
  * IM响应结果
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Data
 public class AntiFraudResponse {
 
@@ -24,6 +26,12 @@ public class AntiFraudResponse {
 	 */
 	@JsonProperty("message")
 	private String message;
+	
+	/**
+	 * 请求唯一标识，后续可用于数据查询
+	 */
+	@JsonProperty("requestId")
+	private String requestId;
 
 	/**
 	 * 风险分数；取值范围[0,1000]，分数越高风险越大
@@ -42,12 +50,6 @@ public class AntiFraudResponse {
 	 */
 	@JsonProperty("status")
 	private int status;
-
-	/**
-	 * 风险详情
-	 */
-	@JsonProperty("detail")
-	private AntiFraudDetail detail;
 	
 	public boolean isSuccess() {
 		return status == 0 && code.equals("1100");

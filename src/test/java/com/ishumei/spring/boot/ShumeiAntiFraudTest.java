@@ -15,6 +15,9 @@
  */
 package com.ishumei.spring.boot;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import okhttp3.OkHttpClient;
 
 public class ShumeiAntiFraudTest {
@@ -24,6 +27,9 @@ public class ShumeiAntiFraudTest {
 	 */
 	public static void main(String[] args) {
 		
+		ObjectMapper objectMapper = new ObjectMapper();
+		objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+		
 		OkHttpClient okhttp3Client = new OkHttpClient.Builder().build();
 		ShumeiAntiFraudProperties properties = new ShumeiAntiFraudProperties();
 		//properties.setAccessKey(accessKey);
@@ -31,7 +37,7 @@ public class ShumeiAntiFraudTest {
 		//properties.setChannelTxt(channelTxt);
 		//properties.setChannelImg(channelImg);
 		
-		ShumeiAntiFraudTemplate template = new ShumeiAntiFraudTemplate(properties, okhttp3Client);
+		ShumeiAntiFraudTemplate template = new ShumeiAntiFraudTemplate(properties, objectMapper, okhttp3Client);
 		
 	}
 	 

@@ -41,7 +41,7 @@ public class ShumeiAntiFraudTextOperations extends ShumeiAntiFraudOperations {
 	 * @return 
 	 */
 	public AntiFraudTextResponse antiFraud(String type, String tokenId, String nickname) {
-		return this.antiFraud(type, tokenId, nickname, null);
+		return this.antiFraud(type, tokenId, nickname, nickname);
 	}
 	
 	/**
@@ -69,9 +69,8 @@ public class ShumeiAntiFraudTextOperations extends ShumeiAntiFraudOperations {
 		payload.setData(data);
         
 		AntiFraudTextResponse res = request(getTemplate().getProperties().getAntiFraudTxtUrl(), payload, AntiFraudTextResponse.class);
-		System.out.println(res);
 		if (!res.isSuccess()) {
-			log.error("导入单个帐号失败, response message is: {}", res);
+			log.error("文本识别失败：code: {}、RequestId: {}、Message: {}", res.getCode(), res.getRequestId(), res.getMessage());
 		}
 		return res;
 	}

@@ -10,7 +10,7 @@ import lombok.EqualsAndHashCode;
  * IM响应结果
  */
 @Data
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode(callSuper = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class AntiFraudTextResponse extends AntiFraudResponse{
 

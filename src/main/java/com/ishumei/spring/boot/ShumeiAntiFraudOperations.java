@@ -15,10 +15,6 @@
  */
 package com.ishumei.spring.boot;
 
-import java.io.IOException;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.MediaType;
 import okhttp3.Request;
@@ -34,8 +30,6 @@ public abstract class ShumeiAntiFraudOperations {
 	public static final String APPLICATION_JSON_VALUE = "application/json";
 	public static final String APPLICATION_JSON_UTF8_VALUE = "application/json;charset=UTF-8";
 	
-	protected final ObjectMapper objectMapper = new ObjectMapper();
- 
 	protected ShumeiAntiFraudTemplate template;
 
 	public ShumeiAntiFraudOperations(ShumeiAntiFraudTemplate template) {
@@ -52,8 +46,8 @@ public abstract class ShumeiAntiFraudOperations {
 
 	protected <T> T toBean(String json, Class<T> cls) {
 		try {
-			return objectMapper.readValue(json, cls);
-		} catch (IOException e) {
+			return getTemplate().getObjectMapper().readValue(json, cls);
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
@@ -70,7 +64,7 @@ public abstract class ShumeiAntiFraudOperations {
 		String json = null;
 		try {
 			RequestBody requestBody = RequestBody.create(MediaType.parse(APPLICATION_JSON_VALUE),
-					objectMapper.writeValueAsString(params));
+					getTemplate().getObjectMapper().writeValueAsString(params));
 			Request request = new Request.Builder().url(url).post(requestBody).build();
 			json = getTemplate().getOkhttp3Client().newCall(request).execute().body().string();
 			log.info("数美 响应 {}", json);
