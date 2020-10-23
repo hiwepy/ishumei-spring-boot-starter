@@ -25,7 +25,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(ShumeiAntiFraudProperties.PREFIX)
 public class ShumeiAntiFraudProperties {
 
-	public static final String PREFIX = "shumei.anti.fraud";
+	public static final String PREFIX = "shumei.anti-fraud";
 
 	/**
 	 * 应用标识： 用于区分相同公司的不同应用，该参数传递值可与数美服务协商用于区分应用，默认应用值：default
