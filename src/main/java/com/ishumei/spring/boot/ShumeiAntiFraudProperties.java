@@ -40,13 +40,45 @@ public class ShumeiAntiFraudProperties {
 	 */
 	private String type;
 	/**
-	 * 文本鉴定过滤时的渠道值
+	 * 文本识别过滤时的渠道值
 	 */
 	private String channelTxt;
 	/**
-	 * 图片鉴定过滤时的渠道值
+	 * 图片识别过滤时的渠道值
 	 */
 	private String channelImg;
+	/**
+	 * 音频识别过滤时的渠道值
+	 */
+	private String channelAudio;
+	/**
+	 * 视频识别过滤时的渠道值
+	 */
+	private String channelVideo;
+	/**
+	 * 文本识别请求地址；默认：http://api-text-bj.fengkongcloud.com/v2/saas/anti_fraud/text
+	 */
+	private String antiFraudTxtUrl = "http://api-text-bj.fengkongcloud.com/v2/saas/anti_fraud/text";
+	/**
+	 * 图片识别请求地址；默认：http://api-img-bj.fengkongcloud.com/v2/saas/anti_fraud/img
+	 */
+	private String antiFraudImgUrl = "http://api-img-bj.fengkongcloud.com/v2/saas/anti_fraud/img";
+	/**
+	 * 音频识别请求地址；默认：http://api-audio-bj.fengkongcloud.com/v2/saas/anti_fraud/audio
+	 */
+	private String antiFraudAudioUrl = "http://api-audio-bj.fengkongcloud.com/v2/saas/anti_fraud/audio";
+	/**
+	 * 音频流识别请求地址；默认：http://api-audiostream-bj.fengkongcloud.com/v2/saas/anti_fraud/audiostream
+	 */
+	private String antiFraudAudioStreamUrl = "http://api-audiostream-bj.fengkongcloud.com/v2/saas/anti_fraud/audiostream";
+	/**
+	 * 视频识别请求地址；默认：http://api-video-bj.fengkongcloud.com/v2/saas/anti_fraud/video
+	 */
+	private String antiFraudVideoUrl = "http://api-video-bj.fengkongcloud.com/v2/saas/anti_fraud/video";
+	/**
+	 * 视频流识别请求地址；默认：http://api-videostream-bj.fengkongcloud.com/v3/saas/anti_fraud/videostream
+	 */
+	private String antiFraudVideoStreamUrl = "http://api-videostream-bj.fengkongcloud.com/v3/saas/anti_fraud/videostream";
 
 	public String getAppId() {
 		return appId;
@@ -86,6 +118,70 @@ public class ShumeiAntiFraudProperties {
 
 	public void setChannelImg(String channelImg) {
 		this.channelImg = channelImg;
+	}
+
+	public String getChannelAudio() {
+		return channelAudio;
+	}
+
+	public void setChannelAudio(String channelAudio) {
+		this.channelAudio = channelAudio;
+	}
+
+	public String getChannelVideo() {
+		return channelVideo;
+	}
+
+	public void setChannelVideo(String channelVideo) {
+		this.channelVideo = channelVideo;
+	}
+
+	public String getAntiFraudTxtUrl() {
+		return antiFraudTxtUrl;
+	}
+
+	public void setAntiFraudTxtUrl(String antiFraudTxtUrl) {
+		this.antiFraudTxtUrl = antiFraudTxtUrl;
+	}
+
+	public String getAntiFraudImgUrl() {
+		return antiFraudImgUrl;
+	}
+
+	public void setAntiFraudImgUrl(String antiFraudImgUrl) {
+		this.antiFraudImgUrl = antiFraudImgUrl;
+	}
+
+	public String getAntiFraudAudioUrl() {
+		return antiFraudAudioUrl;
+	}
+
+	public void setAntiFraudAudioUrl(String antiFraudAudioUrl) {
+		this.antiFraudAudioUrl = antiFraudAudioUrl;
+	}
+
+	public String getAntiFraudAudioStreamUrl() {
+		return antiFraudAudioStreamUrl;
+	}
+
+	public void setAntiFraudAudioStreamUrl(String antiFraudAudioStreamUrl) {
+		this.antiFraudAudioStreamUrl = antiFraudAudioStreamUrl;
+	}
+
+	public String getAntiFraudVideoUrl() {
+		return antiFraudVideoUrl;
+	}
+
+	public void setAntiFraudVideoUrl(String antiFraudVideoUrl) {
+		this.antiFraudVideoUrl = antiFraudVideoUrl;
+	}
+
+	public String getAntiFraudVideoStreamUrl() {
+		return antiFraudVideoStreamUrl;
+	}
+
+	public void setAntiFraudVideoStreamUrl(String antiFraudVideoStreamUrl) {
+		this.antiFraudVideoStreamUrl = antiFraudVideoStreamUrl;
 	}
 
 }

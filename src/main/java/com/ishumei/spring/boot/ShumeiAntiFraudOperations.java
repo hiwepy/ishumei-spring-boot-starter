@@ -18,7 +18,6 @@ package com.ishumei.spring.boot;
 import java.io.IOException;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.common.base.Joiner;
 
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.MediaType;
@@ -35,10 +34,6 @@ public abstract class ShumeiAntiFraudOperations {
 	public static final String APPLICATION_JSON_VALUE = "application/json";
 	public static final String APPLICATION_JSON_UTF8_VALUE = "application/json;charset=UTF-8";
 	
-	public static final String DELIMITER = "&";
-	public static final String SEPARATOR = "=";
-	
-	protected final Joiner.MapJoiner joiner = Joiner.on(DELIMITER).withKeyValueSeparator(SEPARATOR);
 	protected final ObjectMapper objectMapper = new ObjectMapper();
  
 	protected ShumeiAntiFraudTemplate template;
