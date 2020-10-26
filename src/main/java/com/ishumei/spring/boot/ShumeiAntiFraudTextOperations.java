@@ -15,9 +15,9 @@
  */
 package com.ishumei.spring.boot;
 
+import com.ishumei.spring.boot.model.AntiFraudResponse;
 import com.ishumei.spring.boot.model.AntiFraudTextRequest;
 import com.ishumei.spring.boot.model.AntiFraudTextRequestData;
-import com.ishumei.spring.boot.model.AntiFraudTextResponse;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -40,7 +40,7 @@ public class ShumeiAntiFraudTextOperations extends ShumeiAntiFraudOperations {
 	 * @param nickname 用户昵称；强烈建议传递此参数，几乎所有平台的恶意用户都会通过昵称散播垃圾信息，存在涉政违禁和导流信息等风险
 	 * @return 
 	 */
-	public AntiFraudTextResponse antiFraud(String type, String tokenId, String nickname) {
+	public AntiFraudResponse antiFraud(String type, String tokenId, String nickname) {
 		return this.antiFraud(type, tokenId, nickname, nickname);
 	}
 	
@@ -53,7 +53,7 @@ public class ShumeiAntiFraudTextOperations extends ShumeiAntiFraudOperations {
 	 * @param text 要检测的文本内容；文本上限2W字
 	 * @return 
 	 */
-	public AntiFraudTextResponse antiFraud(String type, String tokenId, String nickname, String text) {
+	public AntiFraudResponse antiFraud(String type, String tokenId, String nickname, String text) {
 		
 		AntiFraudTextRequest payload = new AntiFraudTextRequest();
 		payload.setAccessKey(getTemplate().getProperties().getAccessKey());
@@ -68,7 +68,7 @@ public class ShumeiAntiFraudTextOperations extends ShumeiAntiFraudOperations {
 		
 		payload.setData(data);
         
-		AntiFraudTextResponse res = request(getTemplate().getProperties().getAntiFraudTxtUrl(), payload, AntiFraudTextResponse.class);
+		AntiFraudResponse res = request(getTemplate().getProperties().getAntiFraudTxtUrl(), payload, AntiFraudResponse.class);
 		if (!res.isSuccess()) {
 			log.error("文本识别失败：code: {}、RequestId: {}、Message: {}", res.getCode(), res.getRequestId(), res.getMessage());
 		}

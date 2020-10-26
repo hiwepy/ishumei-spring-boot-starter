@@ -51,6 +51,12 @@ public class AntiFraudResponse {
 	@JsonProperty("status")
 	private int status;
 	
+	/**
+	 * 风险详情对象JSON字符串
+	 */
+	@JsonProperty("detail")
+	private String detail;
+	
 	public boolean isSuccess() {
 		return status == 0 && code.equals("1100");
 	}
