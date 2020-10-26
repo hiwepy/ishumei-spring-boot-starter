@@ -30,6 +30,7 @@ import com.ishumei.spring.boot.model.AntiFraudImageRequest;
 import com.ishumei.spring.boot.model.AntiFraudImageRequestData;
 import com.ishumei.spring.boot.model.AntiFraudImageRequestItem;
 import com.ishumei.spring.boot.model.AntiFraudResponse;
+import com.ishumei.spring.boot.model.BatchAntiFraudImageResponse;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -111,7 +112,7 @@ public class ShumeiAntiFraudImageOperations extends ShumeiAntiFraudOperations {
 	 * @param imgs 要检测的图片集合；可使用图片的base64编码或者图片的url链接；支持格式：jpg，jpeg，jp2，png，webp，gif，bmp，tiff，tif，dib，ppm，pgm，pbm，hdr，pic；建议图片像素不小于256*256
 	 * @return 
 	 */
-	public AntiFraudResponse antiFraud(String type, String tokenId, List<String> imgs) {
+	public BatchAntiFraudImageResponse antiFraud(String type, String tokenId, List<String> imgs) {
 		
 		AntiFraudImageRequest payload = new AntiFraudImageRequest();
 		payload.setAccessKey(getTemplate().getProperties().getAccessKey());
@@ -131,7 +132,7 @@ public class ShumeiAntiFraudImageOperations extends ShumeiAntiFraudOperations {
 		
 		payload.setData(data);
         
-		AntiFraudResponse res = request(getTemplate().getProperties().getAntiFraudImgUrl(), payload, AntiFraudResponse.class);
+		BatchAntiFraudImageResponse res = request(getTemplate().getProperties().getAntiFraudImgUrl(), payload, BatchAntiFraudImageResponse.class);
 		if (!res.isSuccess()) {
 			log.error("图片识别失败：code: {}、RequestId: {}、Message: {}", res.getCode(), res.getRequestId(), res.getMessage());
 		}
