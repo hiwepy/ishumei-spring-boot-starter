@@ -65,4 +65,12 @@ public class AntiFraudResponse {
 		return isSuccess() && riskLevel.equals("PASS");
 	}
 	
+	public boolean isReview() {
+		return isSuccess() && riskLevel.equals("REVIEW");
+	}
+	
+	public boolean isReject() {
+		return isSuccess() && riskLevel.equals("REJECT");
+	}
+	
 }
