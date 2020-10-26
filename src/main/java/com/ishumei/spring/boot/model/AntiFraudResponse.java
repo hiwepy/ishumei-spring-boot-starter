@@ -60,4 +60,9 @@ public class AntiFraudResponse {
 	public boolean isSuccess() {
 		return status == 0 && code.equals("1100");
 	}
+	
+	public boolean isPass() {
+		return isSuccess() && riskLevel.equals("PASS");
+	}
+	
 }
