@@ -15,6 +15,8 @@
  */
 package com.ishumei.spring.boot.model;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -33,6 +35,14 @@ public class AntiFraudImageRequestData extends AntiFraudRequestData {
 	 */
 	@JsonProperty("img")
 	private String img;
+	
+	/**
+	 * 要检测的图片数组，要求数组长度在 100 以内； 可使用图片的base64编码或者图片的url链接；
+	 * 支持格式：jpg，jpeg，jp2，png，webp，gif，bmp，tiff，tif，dib，ppm，pgm，pbm，hdr，pic；
+	 * 建议图片像素不小于256*256
+	 */
+	@JsonProperty("imgs")
+	private List<AntiFraudImageRequestItem> imgs;
 
 	/**
 	 * 用户指定的图片标识；当callback存在时，在回调请求中向用户返回；不支持特殊字符

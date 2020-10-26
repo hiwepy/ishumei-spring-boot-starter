@@ -25,7 +25,7 @@ import lombok.Data;
 public class AntiFraudRequestData {
 
 	/**
-	 * 要检测的文本内容； 文本上限2W字
+	 * 客户端用户唯一标识，用于用户行为分析，建 议传入用户 UID 注：不同用户务必传入不同的 tokenId 对其进 行唯一标识
 	 */
 	@JsonProperty("tokenId")
 	private String tokenId;
