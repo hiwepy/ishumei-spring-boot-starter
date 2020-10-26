@@ -132,7 +132,7 @@ public class ShumeiAntiFraudImageOperations extends ShumeiAntiFraudOperations {
 		
 		payload.setData(data);
         
-		BatchAntiFraudImageResponse res = request(getTemplate().getProperties().getAntiFraudImgUrl(), payload, BatchAntiFraudImageResponse.class);
+		BatchAntiFraudImageResponse res = request(getTemplate().getProperties().getAntiFraudImgsUrl(), payload, BatchAntiFraudImageResponse.class);
 		if (!res.isSuccess()) {
 			log.error("图片识别失败：code: {}、RequestId: {}、Message: {}", res.getCode(), res.getRequestId(), res.getMessage());
 		}

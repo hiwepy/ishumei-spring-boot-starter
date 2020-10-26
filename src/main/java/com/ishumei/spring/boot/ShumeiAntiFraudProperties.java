@@ -64,6 +64,10 @@ public class ShumeiAntiFraudProperties {
 	 */
 	private String antiFraudImgUrl = "http://api-img-bj.fengkongcloud.com/v2/saas/anti_fraud/img";
 	/**
+	 * 批量图片识别请求地址；默认：http://api-img-bj.fengkongcloud.com/v2/saas/anti_fraud/imgs
+	 */
+	private String antiFraudImgsUrl = "http://api-img-bj.fengkongcloud.com/v2/saas/anti_fraud/imgs";
+	/**
 	 * 音频识别请求地址；默认：http://api-audio-bj.fengkongcloud.com/v2/saas/anti_fraud/audio
 	 */
 	private String antiFraudAudioUrl = "http://api-audio-bj.fengkongcloud.com/v2/saas/anti_fraud/audio";
@@ -150,6 +154,14 @@ public class ShumeiAntiFraudProperties {
 
 	public void setAntiFraudImgUrl(String antiFraudImgUrl) {
 		this.antiFraudImgUrl = antiFraudImgUrl;
+	}
+	
+	public String getAntiFraudImgsUrl() {
+		return antiFraudImgsUrl;
+	}
+
+	public void setAntiFraudImgsUrl(String antiFraudImgsUrl) {
+		this.antiFraudImgsUrl = antiFraudImgsUrl;
 	}
 
 	public String getAntiFraudAudioUrl() {
