@@ -27,7 +27,7 @@ public class ShumeiAntiFraudTest {
 		properties.setChannelImg("");
 	}
 
-	//@Test
+	@Test
 	public void testText() {
 
 		try {

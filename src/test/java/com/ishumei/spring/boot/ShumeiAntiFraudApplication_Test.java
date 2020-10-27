@@ -1,42 +1,19 @@
-# ishumei-spring-boot-starter
-
-#### 组件简介
-
-> 基于 [数美科技 ](https://www.ishumei.com/) API 实现的文本识别、图片识别
-
-
-#### 使用说明
-
-##### 1、Spring Boot 项目添加 Maven 依赖
-
-``` xml
-<dependency>
-	<groupId>com.github.hiwepy</groupId>
-	<artifactId>ishumei-spring-boot-starter</artifactId>
-	<version>${project.version}</version>
-</dependency>
-```
-
-##### 2、在`application.yml`文件中增加如下配置
-
-```yaml
-#################################################################################################
-### 虹软人脸识别 配置：
-#################################################################################################
-shumei:
-  anti-fraud:
-    access-key: xx
-    app-id: xxx 
-    channel-txt: 
-    channel-img: 
-    channel-audio: 
-    channel-video: 
-```
-
-##### 3、使用示例
-
- 
-```java
+/*
+ * Copyright (c) 2018, hiwepy (https://github.com/hiwepy).
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ */
+package com.ishumei.spring.boot;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -95,14 +72,3 @@ public class ShumeiAntiFraudApplication_Test {
 	}
 
 }
-```
-
-## Jeebiz 技术社区
-
-Jeebiz 技术社区 **微信用户群**，欢迎反馈意见和公众号大佬们一起交流，关注公众号回复「Jeebiz」拉你入群。
-
-同时也欢迎打赏哟，您的支持是我们最大的动力！
-
-|公共号|小程序|
-|---|---|
-|<img width="250px" src="/uploads/jeebiz-starters/images/m_1008c72451fffbd7ef1b13a1025fd595_r.jpg"/>|<img width="250px" src="/uploads/jeebiz-starters/images/m_84ed341cdee3263fcc39bc23834034d1_r.jpg"/>|
