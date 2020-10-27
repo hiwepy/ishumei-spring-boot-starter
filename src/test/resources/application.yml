@@ -1,7 +1,8 @@
-hsqldb:
-  server:
-    protocol: http
-    database: /test
-    dbname: txf
-    enabled: true
-    
+shumei:
+  anti-fraud:
+    access-key: xx
+    app-id: xxx 
+    channel-txt: 
+    channel-img: 
+    channel-audio: 
+    channel-video: 
