@@ -19,6 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 import okhttp3.MediaType;
 import okhttp3.Request;
 import okhttp3.RequestBody;
+import okhttp3.Response;
 
 /**
  * 	数美接口集成 
@@ -60,18 +61,22 @@ public abstract class ShumeiAntiFraudOperations {
 	 * @param params
 	 * @return
 	 */
-	protected String requestInvoke(String url, Object params) {
-		String json = null;
+	public String requestInvoke(String url, Object params) {
+		String content = null;
 		try {
 			RequestBody requestBody = RequestBody.create(MediaType.parse(APPLICATION_JSON_VALUE),
 					getTemplate().getObjectMapper().writeValueAsString(params));
 			Request request = new Request.Builder().url(url).post(requestBody).build();
-			json = getTemplate().getOkhttp3Client().newCall(request).execute().body().string();
-			log.info("数美 响应 {}", json);
+			Response response = getTemplate().getOkhttp3Client().newCall(request).execute();
+			if (response.isSuccessful()) {
+                content = response.body().string();
+                log.debug("response : {}", content);
+                return content;
+            }
 		} catch (Exception e) {
-			log.error("数美 请求异常", e);
+			log.error("请求异常", e);
 		}
-		return json;
+		return content;
 	}
 
 }
