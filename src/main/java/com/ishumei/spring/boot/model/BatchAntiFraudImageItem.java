@@ -19,19 +19,7 @@ public class BatchAntiFraudImageItem {
 	 */
 	@JsonProperty("btId")
 	private String btId;
-	
-	/**
-	 * 风险分数；取值范围[0,1000]，分数越高风险越大
-	 */
-	@JsonProperty("score")
-	private int score;
 
-	/**
-	 * 风险级别 可能返回值： PASS：正常内容，建议直接放行 REVIEW：可疑内容，建议人工审核 REJECT：违规内容，建议直接拦截
-	 */
-	@JsonProperty("riskLevel")
-	private String riskLevel;
-	
 	/**
 	 * 返回码，详见常见错误码除message和requestId之外的字段，只有当code为1100时才会存在 code 见：
 	 * https://www.ishumei.com/help/documents.html?id=24000
@@ -40,17 +28,34 @@ public class BatchAntiFraudImageItem {
 	private String code;
 
 	/**
+	 * 风险详情（callback 不存在或者为空并且 code 为 1100 时存在）
+	 */
+	@JsonProperty("detail")
+	private BatchAntiFraudImageDetail detail;
+
+	/**
 	 * 返回码详情描述
 	 */
 	@JsonProperty("message")
 	private String message;
-		
 	/**
-	 * 风险详情对象JSON字符串
+	 * 请求唯一标识，后续可用于数据查询
 	 */
-	@JsonProperty("detail")
-	private String detail;
+	@JsonProperty("requestId")
+	private String requestId;
 	
+	/**
+	 * 风险级别 可能返回值： PASS：正常内容，建议直接放行 REVIEW：可疑内容，建议人工审核 REJECT：违规内容，建议直接拦截
+	 */
+	@JsonProperty("riskLevel")
+	private String riskLevel;
+	
+	/**
+	 * 风险分数；取值范围[0,1000]，分数越高风险越大
+	 */
+	@JsonProperty("score")
+	private int score;
+
 	public boolean isPass() {
 		return code.equals("1100") && riskLevel.equals("PASS");
 	}
