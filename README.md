@@ -99,10 +99,8 @@ public class ShumeiAntiFraudApplication_Test {
 
 ## Jeebiz 技术社区
 
-Jeebiz 技术社区 **微信用户群**，欢迎反馈意见和公众号大佬们一起交流，关注公众号回复「Jeebiz」拉你入群。
-
-同时也欢迎打赏哟，您的支持是我们最大的动力！
+Jeebiz 技术社区 **微信用户群**，欢迎反馈意见和一起交流，关注公众号回复「Jeebiz」拉你入群。
 
 |公共号|小程序|
 |---|---|
-|<img width="250px" src="/uploads/jeebiz-starters/images/m_1008c72451fffbd7ef1b13a1025fd595_r.jpg"/>|<img width="250px" src="/uploads/jeebiz-starters/images/m_84ed341cdee3263fcc39bc23834034d1_r.jpg"/>|
+|<img width="250px" src="http://wiki.hiwepy.com/uploads/jeebiz-starters/images/m_1008c72451fffbd7ef1b13a1025fd595_r.jpg"/>|<img width="250px" src="http://wiki.hiwepy.com/uploads/jeebiz-starters/images/m_84ed341cdee3263fcc39bc23834034d1_r.jpg"/>|
