@@ -23,14 +23,9 @@ import java.util.Base64;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.ishumei.spring.boot.model.*;
 import org.springframework.util.DigestUtils;
 import org.springframework.util.FileCopyUtils;
-
-import com.ishumei.spring.boot.model.AntiFraudImageRequest;
-import com.ishumei.spring.boot.model.AntiFraudImageRequestData;
-import com.ishumei.spring.boot.model.AntiFraudImageRequestItem;
-import com.ishumei.spring.boot.model.AntiFraudResponse;
-import com.ishumei.spring.boot.model.BatchAntiFraudImageResponse;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -51,9 +46,9 @@ public class ShumeiAntiFraudImageOperations extends ShumeiAntiFraudOperations {
 	 * @param type  平台业务类型，可选值(必须大写)；直播：ZHIBO、电商：ECOM、游戏：GAME、新闻资讯 ：NEWS、论坛：FORUM、社交 ：SOCIAL
 	 * @param tokenId 客户端用户唯一标识；用于用户行为分析，建议传入用户UID；注：不同用户务必传入不同的tokenId对其进行唯一标识
 	 * @param img 要检测的图片；支持格式：jpg，jpeg，jp2，png，webp，gif，bmp，tiff，tif，dib，ppm，pgm，pbm，hdr，pic；建议图片像素不小于256*256
-	 * @return 
-	 * @throws IOException 
-	 * @throws UnsupportedEncodingException 
+	 * @return
+	 * @throws IOException
+	 * @throws UnsupportedEncodingException
 	 */
 	public AntiFraudResponse antiFraud(String type, String tokenId, File img) throws UnsupportedEncodingException, IOException {
 		String imgBase64 = new String(Base64.getEncoder().encode(FileCopyUtils.copyToByteArray(img)), "ISO-8859-1");
@@ -66,9 +61,9 @@ public class ShumeiAntiFraudImageOperations extends ShumeiAntiFraudOperations {
 	 * @param type  平台业务类型，可选值(必须大写)；直播：ZHIBO、电商：ECOM、游戏：GAME、新闻资讯 ：NEWS、论坛：FORUM、社交 ：SOCIAL
 	 * @param tokenId 客户端用户唯一标识；用于用户行为分析，建议传入用户UID；注：不同用户务必传入不同的tokenId对其进行唯一标识
 	 * @param img 要检测的图片；支持格式：jpg，jpeg，jp2，png，webp，gif，bmp，tiff，tif，dib，ppm，pgm，pbm，hdr，pic；建议图片像素不小于256*256
-	 * @return 
-	 * @throws IOException 
-	 * @throws UnsupportedEncodingException 
+	 * @return
+	 * @throws IOException
+	 * @throws UnsupportedEncodingException
 	 */
 	public AntiFraudResponse antiFraud(String type, String tokenId, InputStream img) throws UnsupportedEncodingException, IOException {
 		String imgBase64 = new String(Base64.getEncoder().encode(FileCopyUtils.copyToByteArray(img)), "ISO-8859-1");
@@ -96,14 +91,44 @@ public class ShumeiAntiFraudImageOperations extends ShumeiAntiFraudOperations {
 		data.setImg(img);
 		
 		payload.setData(data);
-        
+
 		AntiFraudResponse res = request(getTemplate().getProperties().getAntiFraudImgUrl(), payload, AntiFraudResponse.class);
 		if (!res.isSuccess()) {
 			log.error("图片识别失败：code: {}、RequestId: {}、Message: {}", res.getCode(), res.getRequestId(), res.getMessage());
 		}
 		return res;
 	}
-	
+
+
+	/**
+	 * 3、智能图片识别test
+	 * API：https://www.ishumei.com/help/documents.html?id=21210
+	 * @param type  平台业务类型，可选值(必须大写)；直播：ZHIBO、电商：ECOM、游戏：GAME、新闻资讯 ：NEWS、论坛：FORUM、社交 ：SOCIAL
+	 * @param tokenId 客户端用户唯一标识；用于用户行为分析，建议传入用户UID；注：不同用户务必传入不同的tokenId对其进行唯一标识
+	 * @param img 要检测的图片；可使用图片的base64编码或者图片的url链接；支持格式：jpg，jpeg，jp2，png，webp，gif，bmp，tiff，tif，dib，ppm，pgm，pbm，hdr，pic；建议图片像素不小于256*256
+	 * @return
+	 */
+	public AntiFraudImageResponse antiFraudTest(String type, String tokenId, String img) {
+
+		AntiFraudImageRequest payload = new AntiFraudImageRequest();
+		payload.setAccessKey(getTemplate().getProperties().getAccessKey());
+		payload.setAppId(getTemplate().getProperties().getAppId());
+		payload.setType(type);
+
+		AntiFraudImageRequestData data = new AntiFraudImageRequestData();
+		data.setChannel(getTemplate().getProperties().getChannelTxt());
+		data.setTokenId(tokenId);
+		data.setImg(img);
+
+		payload.setData(data);
+
+		AntiFraudImageResponse res = request(getTemplate().getProperties().getAntiFraudImgUrl(), payload, AntiFraudImageResponse.class);
+		if (!res.isSuccess()) {
+			log.error("图片识别失败：code: {}、RequestId: {}、Message: {}", res.getCode(), res.getRequestId(), res.getMessage());
+		}
+		return res;
+	}
+
 	/**
 	 * 4、批量智能图片识别
 	 * API：https://www.ishumei.com/help/documents.html?id=21210
