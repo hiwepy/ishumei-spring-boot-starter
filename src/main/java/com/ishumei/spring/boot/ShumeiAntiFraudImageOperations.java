@@ -23,9 +23,14 @@ import java.util.Base64;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.ishumei.spring.boot.model.*;
 import org.springframework.util.DigestUtils;
 import org.springframework.util.FileCopyUtils;
+
+import com.ishumei.spring.boot.model.AntiFraudImageRequest;
+import com.ishumei.spring.boot.model.AntiFraudImageRequestData;
+import com.ishumei.spring.boot.model.AntiFraudImageRequestItem;
+import com.ishumei.spring.boot.model.AntiFraudImageResponse;
+import com.ishumei.spring.boot.model.BatchAntiFraudImageResponse;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -50,7 +55,7 @@ public class ShumeiAntiFraudImageOperations extends ShumeiAntiFraudOperations {
 	 * @throws IOException
 	 * @throws UnsupportedEncodingException
 	 */
-	public AntiFraudResponse antiFraud(String type, String tokenId, File img) throws UnsupportedEncodingException, IOException {
+	public AntiFraudImageResponse antiFraud(String type, String tokenId, File img) throws UnsupportedEncodingException, IOException {
 		String imgBase64 = new String(Base64.getEncoder().encode(FileCopyUtils.copyToByteArray(img)), "ISO-8859-1");
         return this.antiFraud(type, tokenId, imgBase64);
 	}
@@ -65,7 +70,7 @@ public class ShumeiAntiFraudImageOperations extends ShumeiAntiFraudOperations {
 	 * @throws IOException
 	 * @throws UnsupportedEncodingException
 	 */
-	public AntiFraudResponse antiFraud(String type, String tokenId, InputStream img) throws UnsupportedEncodingException, IOException {
+	public AntiFraudImageResponse antiFraud(String type, String tokenId, InputStream img) throws UnsupportedEncodingException, IOException {
 		String imgBase64 = new String(Base64.getEncoder().encode(FileCopyUtils.copyToByteArray(img)), "ISO-8859-1");
         return this.antiFraud(type, tokenId, imgBase64);
 	}
@@ -78,7 +83,7 @@ public class ShumeiAntiFraudImageOperations extends ShumeiAntiFraudOperations {
 	 * @param img 要检测的图片；可使用图片的base64编码或者图片的url链接；支持格式：jpg，jpeg，jp2，png，webp，gif，bmp，tiff，tif，dib，ppm，pgm，pbm，hdr，pic；建议图片像素不小于256*256
 	 * @return 
 	 */
-	public AntiFraudResponse antiFraud(String type, String tokenId, String img) {
+	public AntiFraudImageResponse antiFraud(String type, String tokenId, String img) {
 		
 		AntiFraudImageRequest payload = new AntiFraudImageRequest();
 		payload.setAccessKey(getTemplate().getProperties().getAccessKey());
@@ -92,7 +97,7 @@ public class ShumeiAntiFraudImageOperations extends ShumeiAntiFraudOperations {
 		
 		payload.setData(data);
 
-		AntiFraudResponse res = request(getTemplate().getProperties().getAntiFraudImgUrl(), payload, AntiFraudResponse.class);
+		AntiFraudImageResponse res = request(getTemplate().getProperties().getAntiFraudImgUrl(), payload, AntiFraudImageResponse.class);
 		if (!res.isSuccess()) {
 			log.error("图片识别失败：code: {}、RequestId: {}、Message: {}", res.getCode(), res.getRequestId(), res.getMessage());
 		}
