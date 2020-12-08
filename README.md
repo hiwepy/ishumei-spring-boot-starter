@@ -13,7 +13,7 @@
 <dependency>
 	<groupId>com.github.hiwepy</groupId>
 	<artifactId>ishumei-spring-boot-starter</artifactId>
-	<version>${project.version}</version>
+	<version>1.0.1.RELEASE</version>
 </dependency>
 ```
 
@@ -21,7 +21,7 @@
 
 ```yaml
 #################################################################################################
-### 虹软人脸识别 配置：
+### 数美 配置：
 #################################################################################################
 shumei:
   anti-fraud:
