@@ -1,8 +1,10 @@
 package com.ishumei.spring.boot;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.ishumei.spring.boot.model.AntiFraudVideoResponse;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -61,4 +63,13 @@ public class ShumeiAntiFraudTest {
 
 	}
 
+	@Test
+	public void testVideo() {
+		ShumeiAntiFraudTemplate template = new ShumeiAntiFraudTemplate(properties, objectMapper, okhttp3Client);
+		try {
+			AntiFraudVideoResponse response2 = template.opsForVideo().antiFraud(null, null, null);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+	}
 }
