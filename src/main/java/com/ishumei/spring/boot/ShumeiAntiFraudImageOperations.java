@@ -91,7 +91,7 @@ public class ShumeiAntiFraudImageOperations extends ShumeiAntiFraudOperations {
 		payload.setType(type);
 		
 		AntiFraudImageRequestData data = new AntiFraudImageRequestData();
-		data.setChannel(getTemplate().getProperties().getChannelTxt());
+		data.setChannel(getTemplate().getProperties().getChannelImg());
 		data.setTokenId(tokenId);
 		data.setImg(img);
 		
@@ -121,7 +121,7 @@ public class ShumeiAntiFraudImageOperations extends ShumeiAntiFraudOperations {
 		payload.setType(type);
 
 		AntiFraudImageRequestData data = new AntiFraudImageRequestData();
-		data.setChannel(getTemplate().getProperties().getChannelTxt());
+		data.setChannel(getTemplate().getProperties().getChannelImg());
 		data.setTokenId(tokenId);
 		data.setImg(img);
 
@@ -150,7 +150,7 @@ public class ShumeiAntiFraudImageOperations extends ShumeiAntiFraudOperations {
 		payload.setType(type);
 		
 		AntiFraudImageRequestData data = new AntiFraudImageRequestData();
-		data.setChannel(getTemplate().getProperties().getChannelTxt());
+		data.setChannel(getTemplate().getProperties().getChannelImg());
 		data.setTokenId(tokenId);
 		data.setImgs(imgs.stream().map(img -> {
 			AntiFraudImageRequestItem item = new AntiFraudImageRequestItem();

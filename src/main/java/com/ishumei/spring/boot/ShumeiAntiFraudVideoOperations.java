@@ -15,16 +15,17 @@
  */
 package com.ishumei.spring.boot;
 
-import com.ishumei.spring.boot.model.*;
-import lombok.extern.slf4j.Slf4j;
-
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
+import com.ishumei.spring.boot.model.AntiFraudVideoRequest;
+import com.ishumei.spring.boot.model.AntiFraudVideoRequestData;
+import com.ishumei.spring.boot.model.AntiFraudVideoResponse;
+
+import lombok.extern.slf4j.Slf4j;
+
 /**
- * Tim 接口集成 1、视频审核
- * https://cloud.tencent.com/document/product/269/42440
  */
 @Slf4j
 public class ShumeiAntiFraudVideoOperations extends ShumeiAntiFraudOperations {
