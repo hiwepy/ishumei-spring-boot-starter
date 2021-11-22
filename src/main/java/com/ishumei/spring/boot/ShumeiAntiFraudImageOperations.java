@@ -45,56 +45,59 @@ public class ShumeiAntiFraudImageOperations extends ShumeiAntiFraudOperations {
 		super(timTemplate);
 	}
 
+
 	/**
 	 * 1、智能图片识别
-	 * API：https://www.ishumei.com/help/documents.html?id=21210
-	 * @param type  平台业务类型，可选值(必须大写)；直播：ZHIBO、电商：ECOM、游戏：GAME、新闻资讯 ：NEWS、论坛：FORUM、社交 ：SOCIAL
+	 * API：https://help.ishumei.com/docs/tj/image/request/#data
+	 * @param eventId 事件标识，需要联系数美服务开通，请使用数美单独提供的传值为准 可选值：headImage：头像 album：相册 dynamic：动态 article：帖子 comment：评论 roomCover：房间封面 groupMessage：群聊图片 message：私聊图片 product：商品图片
+	 * @param type  检测的风险类型，请使用数美单独提供的传值为准 可选值：POLITICS：涉政识别 PORN：色情识别 OCR：图片中的OCR文字识别 AD：广告识别 LOGO商企logo识别 MINOR：未成年人识别 SCREEN：特殊画面识别 SCENCE：场景画面识别 QR：二维码识别 QUALITY：图像质量识别 FACE：人脸识别 PORTRAIT：人像识别 BEAUTY：颜值识别 ANIMAL：动物识别 OBJECT：物品识别 VIOLENCE：暴恐识别 BAN：违禁 如果需要多个识别功能，通过下划线连接
 	 * @param tokenId 客户端用户唯一标识；用于用户行为分析，建议传入用户UID；注：不同用户务必传入不同的tokenId对其进行唯一标识
-	 * @param img 要检测的图片；支持格式：jpg，jpeg，jp2，png，webp，gif，bmp，tiff，tif，dib，ppm，pgm，pbm，hdr，pic；建议图片像素不小于256*256
+	 * @param img 要检测的图片；可使用图片的base64编码或者图片的url链接；支持格式：jpg，jpeg，jp2，png，webp，gif，bmp，tiff，tif，dib，ppm，pgm，pbm，hdr，pic；建议图片像素不小于256*256 图片大小最大10MB
 	 * @return
 	 * @throws IOException
 	 * @throws UnsupportedEncodingException
 	 */
-	public AntiFraudImageResponse antiFraud(String type, String tokenId, File img) throws UnsupportedEncodingException, IOException {
+	public AntiFraudImageResponse antiFraud(String eventId, String type, String tokenId, File img) throws UnsupportedEncodingException, IOException {
 		String imgBase64 = new String(Base64.getEncoder().encode(FileCopyUtils.copyToByteArray(img)), "ISO-8859-1");
-        return this.antiFraud(type, tokenId, imgBase64);
+		return this.antiFraud(eventId, type, tokenId, imgBase64);
 	}
-	
+
 	/**
 	 * 2、智能图片识别
-	 * API：https://www.ishumei.com/help/documents.html?id=21210
-	 * @param type  平台业务类型，可选值(必须大写)；直播：ZHIBO、电商：ECOM、游戏：GAME、新闻资讯 ：NEWS、论坛：FORUM、社交 ：SOCIAL
+	 * API：https://help.ishumei.com/docs/tj/image/request/#data
+	 * @param eventId 事件标识，需要联系数美服务开通，请使用数美单独提供的传值为准 可选值：headImage：头像 album：相册 dynamic：动态 article：帖子 comment：评论 roomCover：房间封面 groupMessage：群聊图片 message：私聊图片 product：商品图片
+	 * @param type  检测的风险类型，请使用数美单独提供的传值为准 可选值：POLITICS：涉政识别 PORN：色情识别 OCR：图片中的OCR文字识别 AD：广告识别 LOGO商企logo识别 MINOR：未成年人识别 SCREEN：特殊画面识别 SCENCE：场景画面识别 QR：二维码识别 QUALITY：图像质量识别 FACE：人脸识别 PORTRAIT：人像识别 BEAUTY：颜值识别 ANIMAL：动物识别 OBJECT：物品识别 VIOLENCE：暴恐识别 BAN：违禁 如果需要多个识别功能，通过下划线连接
 	 * @param tokenId 客户端用户唯一标识；用于用户行为分析，建议传入用户UID；注：不同用户务必传入不同的tokenId对其进行唯一标识
-	 * @param img 要检测的图片；支持格式：jpg，jpeg，jp2，png，webp，gif，bmp，tiff，tif，dib，ppm，pgm，pbm，hdr，pic；建议图片像素不小于256*256
+	 * @param img 要检测的图片；可使用图片的base64编码或者图片的url链接；支持格式：jpg，jpeg，jp2，png，webp，gif，bmp，tiff，tif，dib，ppm，pgm，pbm，hdr，pic；建议图片像素不小于256*256 图片大小最大10MB
 	 * @return
 	 * @throws IOException
 	 * @throws UnsupportedEncodingException
 	 */
-	public AntiFraudImageResponse antiFraud(String type, String tokenId, InputStream img) throws UnsupportedEncodingException, IOException {
+	public AntiFraudImageResponse antiFraud(String eventId, String type, String tokenId, InputStream img) throws UnsupportedEncodingException, IOException {
 		String imgBase64 = new String(Base64.getEncoder().encode(FileCopyUtils.copyToByteArray(img)), "ISO-8859-1");
-        return this.antiFraud(type, tokenId, imgBase64);
+		return this.antiFraud(eventId, type, tokenId, imgBase64);
 	}
-	
+
 	/**
 	 * 3、智能图片识别
-	 * API：https://www.ishumei.com/help/documents.html?id=21210
-	 * @param type  平台业务类型，可选值(必须大写)；直播：ZHIBO、电商：ECOM、游戏：GAME、新闻资讯 ：NEWS、论坛：FORUM、社交 ：SOCIAL
+	 * API：https://help.ishumei.com/docs/tj/image/request/#data
+	 * @param eventId 事件标识，需要联系数美服务开通，请使用数美单独提供的传值为准 可选值：headImage：头像 album：相册 dynamic：动态 article：帖子 comment：评论 roomCover：房间封面 groupMessage：群聊图片 message：私聊图片 product：商品图片
+	 * @param type  检测的风险类型，请使用数美单独提供的传值为准 可选值：POLITICS：涉政识别 PORN：色情识别 OCR：图片中的OCR文字识别 AD：广告识别 LOGO商企logo识别 MINOR：未成年人识别 SCREEN：特殊画面识别 SCENCE：场景画面识别 QR：二维码识别 QUALITY：图像质量识别 FACE：人脸识别 PORTRAIT：人像识别 BEAUTY：颜值识别 ANIMAL：动物识别 OBJECT：物品识别 VIOLENCE：暴恐识别 BAN：违禁 如果需要多个识别功能，通过下划线连接
 	 * @param tokenId 客户端用户唯一标识；用于用户行为分析，建议传入用户UID；注：不同用户务必传入不同的tokenId对其进行唯一标识
 	 * @param img 要检测的图片；可使用图片的base64编码或者图片的url链接；支持格式：jpg，jpeg，jp2，png，webp，gif，bmp，tiff，tif，dib，ppm，pgm，pbm，hdr，pic；建议图片像素不小于256*256
-	 * @return 
+	 * @return
 	 */
-	public AntiFraudImageResponse antiFraud(String type, String tokenId, String img) {
-		
+	public AntiFraudImageResponse antiFraud(String eventId, String type, String tokenId, String img) {
+
 		AntiFraudImageRequest payload = new AntiFraudImageRequest();
 		payload.setAccessKey(getTemplate().getProperties().getAccessKey());
 		payload.setAppId(getTemplate().getProperties().getAppId());
+		payload.setEventId(eventId);
 		payload.setType(type);
-		
+
 		AntiFraudImageRequestData data = new AntiFraudImageRequestData();
-		data.setChannel(getTemplate().getProperties().getChannelImg());
 		data.setTokenId(tokenId);
 		data.setImg(img);
-		
 		payload.setData(data);
 
 		AntiFraudImageResponse res = request(getTemplate().getProperties().getAntiFraudImgUrl(), payload, AntiFraudImageResponse.class);
@@ -140,15 +143,15 @@ public class ShumeiAntiFraudImageOperations extends ShumeiAntiFraudOperations {
 	 * @param type  DEFAULT：默认识别涉政、色情、广告，等价 于 POLITICS_PORN_AD POLITICS：涉政识别 PORN：色情识别 OCR：图片中的 OCR 文字识别 AD：广告识别 LOGO：视频水印 logo 识别 BEHAVIOR：不良场景识别，支持吸烟、喝酒、 赌博、吸毒、避孕套和无意义画面 通过下划线连接，如 AD_PORN_POLITICS 用于 广告、色情和涉政组合识别 注意这里 POLITICS 实际上等价于以下两个类 型：PERSON：涉政人脸识别 VIOLENCE：暴恐识别
 	 * @param tokenId 客户端用户唯一标识；用于用户行为分析，建议传入用户UID；注：不同用户务必传入不同的tokenId对其进行唯一标识
 	 * @param imgs 要检测的图片集合；可使用图片的base64编码或者图片的url链接；支持格式：jpg，jpeg，jp2，png，webp，gif，bmp，tiff，tif，dib，ppm，pgm，pbm，hdr，pic；建议图片像素不小于256*256
-	 * @return 
+	 * @return
 	 */
 	public BatchAntiFraudImageResponse antiFraud(String type, String tokenId, List<String> imgs) {
-		
+
 		AntiFraudImageRequest payload = new AntiFraudImageRequest();
 		payload.setAccessKey(getTemplate().getProperties().getAccessKey());
 		payload.setAppId(getTemplate().getProperties().getAppId());
 		payload.setType(type);
-		
+
 		AntiFraudImageRequestData data = new AntiFraudImageRequestData();
 		data.setChannel(getTemplate().getProperties().getChannelImg());
 		data.setTokenId(tokenId);
@@ -159,14 +162,14 @@ public class ShumeiAntiFraudImageOperations extends ShumeiAntiFraudOperations {
 			item.setTokenId(tokenId);
 			return item;
 		}).collect(Collectors.toList()));
-		
+
 		payload.setData(data);
-        
+
 		BatchAntiFraudImageResponse res = request(getTemplate().getProperties().getAntiFraudImgsUrl(), payload, BatchAntiFraudImageResponse.class);
 		if (!res.isSuccess()) {
 			log.error("图片识别失败：code: {}、RequestId: {}、Message: {}", res.getCode(), res.getRequestId(), res.getMessage());
 		}
 		return res;
 	}
-	
+
 }
