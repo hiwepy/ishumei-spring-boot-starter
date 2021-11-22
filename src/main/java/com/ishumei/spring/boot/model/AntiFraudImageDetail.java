@@ -41,25 +41,25 @@ public class AntiFraudImageDetail {
 	 */
 	@JsonProperty("text")
 	private String text;
-	
+
 	/**
 	 * 色情识别标签，标识色情识别结果，可选值： "色情"、"性感"、"正常"，可根据需求返回 该参
 	 */
 	@JsonProperty("pornLabel")
 	private String pornLabel;
-	
+
 	/**
 	 * 色情图片概率，可根据需求返回该参数
 	 */
 	@JsonProperty("pornRate")
 	private float pornRate;
-	
+
 	/**
 	 * 性感图片概率，可根据需求返回该参数
 	 */
 	@JsonProperty("sexyRate")
 	private float sexyRate;
-	
+
 	/**
 	 * 正常图片概率，可根据需求返回该参数
 	 */
@@ -71,91 +71,91 @@ public class AntiFraudImageDetail {
 	 */
 	@JsonProperty("polityName")
 	private String polityName;
-	
+
 	/**
 	 * 最相似的涉政人物概率，可根据需求返回该 参数
 	 */
 	@JsonProperty("polityRate")
 	private float polityRate;
-	
+
 	/**
 	 * 暴恐识别标签，标识暴恐识别结果，可选值： "暴乱场景"、"国旗国徽"、"军装"、"恐怖组 织"、"枪支刀具"、"血腥场景"、”游戏枪支 刀具”、"中国地图"、"坦克"、"蜡烛"、"制服 "、"正常"，可根据需求返回该参数
 	 */
 	@JsonProperty("violenceLabel")
 	private String violenceLabel;
-	
+
 	/**
 	 * 暴乱场景概率，可根据需求返回该参数
 	 */
 	@JsonProperty("rebelRate")
 	private float rebelRate;
-	
+
 	/**
 	 * 国旗国徽概率，可根据需求返回该参数
 	 */
 	@JsonProperty("flagRate")
 	private float flagRate;
-	
+
 	/**
 	 * 军装概率，可根据需求返回该参数
 	 */
 	@JsonProperty("armyRate")
 	private float armyRate;
-	
+
 	/**
 	 * 恐怖组织概率，可根据需求返回该参数
 	 */
 	@JsonProperty("terrorismRate")
 	private float terrorismRate;
-	
+
 	/**
 	 * 枪支刀具概率，可根据需求返回该参数
 	 */
 	@JsonProperty("weaponRate")
 	private float weaponRate;
-	
+
 	/**
 	 * 血腥场景概率，可根据需求返回该参数
 	 */
 	@JsonProperty("bloodRate")
 	private float bloodRate;
-	
+
 	/**
 	 * 游戏枪支刀具概率，可根据需求返回该参数
 	 */
 	@JsonProperty("gameWeaponRate")
 	private float gameWeaponRate;
-	
+
 	/**
 	 * 中国地图概率，可根据需求返回该参数
 	 */
 	@JsonProperty("chinamapRate")
 	private float chinamapRate;
-	
+
 	/**
 	 * 坦克概率，可根据需求返回该参数
 	 */
 	@JsonProperty("tankRate")
 	private float tankRate;
-	
+
 	/**
 	 * 蜡烛概率，可根据需求返回该参数
 	 */
 	@JsonProperty("candleRate")
 	private float candleRate;
-	
+
 	/**
 	 * 制服概率，可根据需求返回该参数
 	 */
 	@JsonProperty("uniformRate")
 	private float uniformRate;
-	
+
 	/**
 	 * 非暴恐图片概率，可根据需求返回该参数
 	 */
 	@JsonProperty("nonViolenceRate")
 	private float nonViolenceRate;
-	
+
 	/**
 	 * 新版策略规则风险原因描述；注：该参数为新版API返回参数，过渡阶段只有新策略才会返回
 	 */
@@ -174,5 +174,11 @@ public class AntiFraudImageDetail {
 	 */
 	@JsonProperty("riskType")
 	private int riskType;
+
+	@JsonProperty("original_text")
+	private String originalText;
+
+	@JsonProperty("sexy_risk_tokenid")
+	private int sexyRiskTokenId;
 
 }
