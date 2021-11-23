@@ -1,16 +1,16 @@
 package com.ishumei.spring.boot;
 
-import java.util.concurrent.TimeUnit;
-
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 
-import okhttp3.ConnectionPool;
 import okhttp3.OkHttpClient;
 
 
@@ -19,29 +19,22 @@ import okhttp3.OkHttpClient;
 public class ShumeiAntiFraudAutoConfiguration {
 
 	@Bean
-	@ConditionalOnMissingBean
-	public OkHttpClient okhttp3Client() {
-		OkHttpClient.Builder builder = new OkHttpClient.Builder();
-        builder.connectTimeout(6L, TimeUnit.SECONDS);
-        builder.readTimeout(6L, TimeUnit.SECONDS);
-        builder.writeTimeout(6L, TimeUnit.SECONDS);
-        ConnectionPool connectionPool = new ConnectionPool(50, 60, TimeUnit.SECONDS);
-        builder.connectionPool(connectionPool);
-        return builder.build();
-	}
-	
-	@Bean
-	@ConditionalOnMissingBean
-	public ObjectMapper objectMapper() {
-		ObjectMapper objectMapper = new ObjectMapper();
-		objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-		return objectMapper;
-	}
-	
-	@Bean
-	public ShumeiAntiFraudTemplate shumeiAntiFraudTemplate(ShumeiAntiFraudProperties properties,  
-			ObjectMapper objectMapper, OkHttpClient okhttp3Client) {
+	public ShumeiAntiFraudTemplate shumeiAntiFraudTemplate(ShumeiAntiFraudProperties properties,
+														   ObjectProvider<OkHttpClient> okhttp3ClientProvider,
+														   ObjectProvider<ObjectMapper> objectMapperProvider) {
+
+		OkHttpClient okhttp3Client = okhttp3ClientProvider.getIfAvailable(() -> new OkHttpClient.Builder().build());
+
+		ObjectMapper objectMapper = objectMapperProvider.getIfAvailable(() -> {
+			ObjectMapper objectMapperDef = new ObjectMapper();
+			objectMapperDef.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+			objectMapperDef.enable(MapperFeature.USE_GETTERS_AS_SETTERS);
+			objectMapperDef.enable(MapperFeature.ALLOW_FINAL_FIELDS_AS_MUTATORS);
+			objectMapperDef.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
+			objectMapperDef.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+			return objectMapperDef;
+		});
 		return new ShumeiAntiFraudTemplate(properties, objectMapper, okhttp3Client);
 	}
-	
+
 }
