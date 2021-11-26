@@ -25,7 +25,7 @@ public class AntiFraudImageResponse {
 	 */
 	@JsonProperty("message")
 	private String message;
-	
+
 	/**
 	 * 请求唯一标识，后续可用于数据查询
 	 */
@@ -49,27 +49,30 @@ public class AntiFraudImageResponse {
 	 */
 	@JsonProperty("status")
 	private int status;
-	
+
+	@JsonProperty("taskId")
+	private String taskId;
+
 	/**
 	 * 风险详情对象JSON字符串
 	 */
 	@JsonProperty("detail")
 	private AntiFraudImageDetail detail;
-	
+
 	public boolean isSuccess() {
 		return status == 0 && code.equals("1100");
 	}
-	
+
 	public boolean isPass() {
 		return isSuccess() && riskLevel.equals("PASS");
 	}
-	
+
 	public boolean isReview() {
 		return isSuccess() && riskLevel.equals("REVIEW");
 	}
-	
+
 	public boolean isReject() {
 		return isSuccess() && riskLevel.equals("REJECT");
 	}
-	
+
 }
