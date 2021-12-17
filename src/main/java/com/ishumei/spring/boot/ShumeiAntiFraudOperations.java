@@ -21,6 +21,7 @@ import okhttp3.MediaType;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+import org.springframework.beans.BeanUtils;
 
 /**
  * 	数美接口集成
@@ -51,9 +52,9 @@ public abstract class ShumeiAntiFraudOperations {
 			return JSONObject.parseObject(json, cls);
 //			return getTemplate().getObjectMapper().readValue(json, cls);
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error(e.getMessage());
+			return BeanUtils.instantiateClass(cls);
 		}
-		return null;
 	}
 
 	/**
