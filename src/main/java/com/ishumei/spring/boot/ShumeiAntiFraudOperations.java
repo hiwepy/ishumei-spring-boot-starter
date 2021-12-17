@@ -15,6 +15,7 @@
  */
 package com.ishumei.spring.boot;
 
+import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.MediaType;
 import okhttp3.Request;
@@ -22,7 +23,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 /**
- * 	数美接口集成 
+ * 	数美接口集成
  * https://www.ishumei.com/help/documents.html?id=21110
  */
 @Slf4j
@@ -30,24 +31,25 @@ public abstract class ShumeiAntiFraudOperations {
 
 	public static final String APPLICATION_JSON_VALUE = "application/json";
 	public static final String APPLICATION_JSON_UTF8_VALUE = "application/json;charset=UTF-8";
-	
+
 	protected ShumeiAntiFraudTemplate template;
 
 	public ShumeiAntiFraudOperations(ShumeiAntiFraudTemplate template) {
 		this.template = template;
 	}
-	
+
 	public ShumeiAntiFraudTemplate getTemplate() {
 		return template;
 	}
-	
+
 	protected <T> T request(String url, Object params, Class<T> cls) {
 		return toBean(requestInvoke(url, params), cls);
 	}
 
 	protected <T> T toBean(String json, Class<T> cls) {
 		try {
-			return getTemplate().getObjectMapper().readValue(json, cls);
+			return JSONObject.parseObject(json, cls);
+//			return getTemplate().getObjectMapper().readValue(json, cls);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
