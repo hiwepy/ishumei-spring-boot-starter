@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
+import java.util.Objects;
+
 /**
  * IM响应结果
  */
@@ -60,7 +62,7 @@ public class AntiFraudImageResponse {
 	private AntiFraudImageDetail detail;
 
 	public boolean isSuccess() {
-		return status == 0 && code.equals("1100");
+		return status == 0 && Objects.nonNull(code) && code.equals("1100");
 	}
 
 	public boolean isPass() {
