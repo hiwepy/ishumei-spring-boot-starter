@@ -23,6 +23,8 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 import org.springframework.beans.BeanUtils;
 
+import java.util.Objects;
+
 /**
  * 	数美接口集成
  * https://www.ishumei.com/help/documents.html?id=21110
@@ -49,6 +51,9 @@ public abstract class ShumeiAntiFraudOperations {
 
 	protected <T> T toBean(String json, Class<T> cls) {
 		try {
+			if(Objects.isNull(json)){
+				return BeanUtils.instantiateClass(cls);
+			}
 			return JSONObject.parseObject(json, cls);
 //			return getTemplate().getObjectMapper().readValue(json, cls);
 		} catch (Exception e) {
