@@ -69,9 +69,7 @@ public class ShumeiAntiFraudTextOperations extends ShumeiAntiFraudOperations {
 		payload.setData(data);
 
 		AntiFraudResponse res = requestInvoke(getTemplate().getProperties().getAntiFraudTxtUrl(), payload, AntiFraudResponse.class);
-		if (!res.isSuccess()) {
-			log.error("文本识别失败：code: {}、RequestId: {}、Message: {}", res.getCode(), res.getRequestId(), res.getMessage());
-		}
+
 		return res;
 	}
 

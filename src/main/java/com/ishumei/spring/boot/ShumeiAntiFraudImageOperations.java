@@ -96,13 +96,7 @@ public class ShumeiAntiFraudImageOperations extends ShumeiAntiFraudOperations {
 		data.setImg(img);
 
 		payload.setData(data);
-
-		log.info("数美三方鉴图接口请求参数 => {}", payload);
-
 		AntiFraudImageResponse res = requestInvoke(getTemplate().getProperties().getAntiFraudImgUrl(), payload, AntiFraudImageResponse.class);
-		if (!res.isSuccess()) {
-			log.error("图片识别失败：code: {}、RequestId: {}、Message: {}", res.getCode(), res.getRequestId(), res.getMessage());
-		}
 		return res;
 	}
 
@@ -130,9 +124,6 @@ public class ShumeiAntiFraudImageOperations extends ShumeiAntiFraudOperations {
 		payload.setData(data);
 
 		AntiFraudImageResponse res = requestInvoke(getTemplate().getProperties().getAntiFraudImgUrl(), payload, AntiFraudImageResponse.class);
-		if (!res.isSuccess()) {
-			log.error("图片识别失败：code: {}、RequestId: {}、Message: {}", res.getCode(), res.getRequestId(), res.getMessage());
-		}
 		return res;
 	}
 
@@ -165,9 +156,7 @@ public class ShumeiAntiFraudImageOperations extends ShumeiAntiFraudOperations {
 		payload.setData(data);
 
 		BatchAntiFraudImageResponse res = requestInvoke(getTemplate().getProperties().getAntiFraudImgsUrl(), payload, BatchAntiFraudImageResponse.class);
-		if (!res.isSuccess()) {
-			log.error("图片识别失败：code: {}、RequestId: {}、Message: {}", res.getCode(), res.getRequestId(), res.getMessage());
-		}
+
 		return res;
 	}
 
@@ -194,9 +183,7 @@ public class ShumeiAntiFraudImageOperations extends ShumeiAntiFraudOperations {
 		payload.setData(data);
 
 		BatchAntiFraudImageResponse res = requestInvoke(getTemplate().getProperties().getAntiFraudImgsUrl(), payload, BatchAntiFraudImageResponse.class);
-		if (!res.isSuccess()) {
-			log.error("图片识别失败：code: {}、RequestId: {}、Message: {}", res.getCode(), res.getRequestId(), res.getMessage());
-		}
+
 		return res;
 	}
 
