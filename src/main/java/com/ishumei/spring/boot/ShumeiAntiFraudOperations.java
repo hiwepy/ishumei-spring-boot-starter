@@ -71,15 +71,15 @@ public abstract class ShumeiAntiFraudOperations {
 			try(Response response = getTemplate().getOkhttp3Client().newCall(request).execute();) {
 				if (response.isSuccessful()) {
 					String body = response.body().string();
-					log.info("iShumei Request Success : url : {}, params : {}, code : {}, body : {} , use time : {} ", url, params, response.code(), body , System.currentTimeMillis() - start);
+					log.info("iShumei Request Success : url : {}, params : {}, code : {}, body : {} , use time : {} ", url, paramStr, response.code(), body , System.currentTimeMillis() - start);
 					res = this.readValue(body, cls);
 				} else {
-					log.error("iShumei Request Failure : url : {}, params : {}, code : {}, message : {}, use time : {} ", url, params, response.code(), response.message(), System.currentTimeMillis() - start);
+					log.error("iShumei Request Failure : url : {}, params : {}, code : {}, message : {}, use time : {} ", url, paramStr, response.code(), response.message(), System.currentTimeMillis() - start);
 					res = BeanUtils.instantiateClass(cls);
 				}
 			}
 		} catch (Exception e) {
-			log.error("iShumei Request Error : url : {}, params : {}, use time : {} ,  {}", url, params, e.getMessage(), System.currentTimeMillis() - start);
+			log.error("iShumei Request Error : url : {}, params : {}, use time : {} ,  {}", url, paramStr, e.getMessage(), System.currentTimeMillis() - start);
 			res = BeanUtils.instantiateClass(cls);
 		}
 		return res;
