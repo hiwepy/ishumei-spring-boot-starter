@@ -1,6 +1,7 @@
 package com.ishumei.spring.boot.model;
 
 import java.util.List;
+import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -28,7 +29,7 @@ public class BatchAntiFraudImageResponse {
 	 */
 	@JsonProperty("message")
 	private String message;
-	
+
 	/**
 	 * 请求唯一标识，后续可用于数据查询
 	 */
@@ -46,9 +47,9 @@ public class BatchAntiFraudImageResponse {
 	 */
 	@JsonProperty("statistics")
 	private List<Integer> statistics;
-	
+
 	public boolean isSuccess() {
-		return code.equals("1100");
+		return Objects.nonNull(code) && code.equals("1100");
 	}
-	
+
 }
