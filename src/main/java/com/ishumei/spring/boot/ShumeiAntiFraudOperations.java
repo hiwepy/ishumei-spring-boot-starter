@@ -79,7 +79,7 @@ public abstract class ShumeiAntiFraudOperations {
 				}
 			}
 		} catch (Exception e) {
-			log.error("iShumei Request Error : url : {}, params : {}, use time : {} ,  {}", url, paramStr, e.getMessage(), System.currentTimeMillis() - start);
+			log.error("iShumei Request Error : url : {}, params : {}, use time : {} ,  {}", url, JSONObject.toJSONString(params), e.getMessage(), System.currentTimeMillis() - start);
 			res = BeanUtils.instantiateClass(cls);
 		}
 		return res;
