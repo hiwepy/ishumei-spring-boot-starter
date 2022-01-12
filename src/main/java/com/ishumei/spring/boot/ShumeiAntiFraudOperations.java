@@ -17,10 +17,7 @@ package com.ishumei.spring.boot;
 
 import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
-import okhttp3.MediaType;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
+import okhttp3.*;
 import org.springframework.beans.BeanUtils;
 
 import java.util.Objects;
@@ -32,8 +29,10 @@ import java.util.Objects;
 @Slf4j
 public abstract class ShumeiAntiFraudOperations {
 
-	public static final String APPLICATION_JSON_VALUE = "application/json";
-	public static final String APPLICATION_JSON_UTF8_VALUE = "application/json;charset=UTF-8";
+	public final static String APPLICATION_JSON_VALUE = "application/json";
+	public final static String APPLICATION_JSON_UTF8_VALUE = "application/json;charset=UTF-8";
+	public final static MediaType APPLICATION_JSON = MediaType.parse(APPLICATION_JSON_VALUE);
+	public final static MediaType APPLICATION_JSON_UTF8 = MediaType.parse(APPLICATION_JSON_UTF8_VALUE);
 
 	protected ShumeiAntiFraudTemplate template;
 
@@ -45,11 +44,7 @@ public abstract class ShumeiAntiFraudOperations {
 		return template;
 	}
 
-	protected <T> T request(String url, Object params, Class<T> cls) {
-		return toBean(requestInvoke(url, params), cls);
-	}
-
-	protected <T> T toBean(String json, Class<T> cls) {
+	public <T> T readValue(String json, Class<T> cls) {
 		try {
 			if(Objects.isNull(json)){
 				return BeanUtils.instantiateClass(cls);
@@ -62,29 +57,32 @@ public abstract class ShumeiAntiFraudOperations {
 		}
 	}
 
-	/**
-	 * http 请求service
-	 *
-	 * @param url
-	 * @param params
-	 * @return
-	 */
-	public String requestInvoke(String url, Object params) {
-		String content = null;
+	public <T> T requestInvoke(String url, Object params, Class<T> cls) {
+		long start = System.currentTimeMillis();
+		T res = null;
 		try {
-			RequestBody requestBody = RequestBody.create(MediaType.parse(APPLICATION_JSON_VALUE),
-					getTemplate().getObjectMapper().writeValueAsString(params));
+
+			String paramStr = getTemplate().getObjectMapper().writeValueAsString(params);
+			log.info("iShumei Request Param :  {}", paramStr);
+
+			RequestBody requestBody = RequestBody.create(APPLICATION_JSON_UTF8, paramStr);
 			Request request = new Request.Builder().url(url).post(requestBody).build();
-			Response response = getTemplate().getOkhttp3Client().newCall(request).execute();
-			if (response.isSuccessful()) {
-                content = response.body().string();
-                log.debug("response : {}", content);
-                return content;
-            }
+
+			try(Response response = getTemplate().getOkhttp3Client().newCall(request).execute();) {
+				if (response.isSuccessful()) {
+					String body = response.body().string();
+					log.info("iShumei Request Success : url : {}, params : {}, code : {}, body : {} , use time : {} ", url, params, response.code(), body , System.currentTimeMillis() - start);
+					res = this.readValue(body, cls);
+				} else {
+					log.error("iShumei Request Failure : url : {}, params : {}, code : {}, message : {}, use time : {} ", url, params, response.code(), response.message(), System.currentTimeMillis() - start);
+					res = BeanUtils.instantiateClass(cls);
+				}
+			}
 		} catch (Exception e) {
-			log.error("请求异常", e);
+			log.error("iShumei Request Error : url : {}, params : {}, use time : {} ,  {}", url, params, e.getMessage(), System.currentTimeMillis() - start);
+			res = BeanUtils.instantiateClass(cls);
 		}
-		return content;
+		return res;
 	}
 
 }

@@ -50,7 +50,7 @@ public class ShumeiAntiFraudVideoOperations extends ShumeiAntiFraudOperations {
 
 		payload.setData(data);
 
-		AntiFraudVideoResponse res = request(getTemplate().getProperties().getAntiFraudTxtUrl(), payload, AntiFraudVideoResponse.class);
+		AntiFraudVideoResponse res = requestInvoke(getTemplate().getProperties().getAntiFraudTxtUrl(), payload, AntiFraudVideoResponse.class);
 		return res;
 	}
 }
