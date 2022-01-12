@@ -181,4 +181,7 @@ public class AntiFraudImageDetail {
 	@JsonProperty("sexy_risk_tokenid")
 	private int sexyRiskTokenId;
 
+	@JsonProperty("riskSource")
+	private int riskSource;
+
 }
